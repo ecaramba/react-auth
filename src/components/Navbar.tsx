@@ -18,15 +18,13 @@ export default function Navbar() {
           <Link href="/relatorio" className="hover:underline">
             Relatório
           </Link>
+          <Link href="/cadastro" className="hover:underline">
+            Cadastro
+          </Link>
           {session && (
-            <>
-              <Link href="/cadastro" className="hover:underline">
-                Cadastro
-              </Link>
-              <Link href="/protected" className="hover:underline">
-                Protected
-              </Link>
-            </>
+            <Link href="/protected" className="hover:underline">
+              Protected
+            </Link>
           )}
           {!loading && !session && (
             <button

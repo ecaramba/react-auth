@@ -18,7 +18,7 @@ export default function CadastroPage() {
 
   useEffect(() => {
     if (!loading && !session) {
-      router.push("/api/auth/signin");
+      router.push("/401");
     }
   }, [session, loading, router]);
 

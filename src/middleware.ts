@@ -9,9 +9,9 @@ export async function middleware(request: NextRequest) {
   if ((request.nextUrl.pathname.startsWith("/protected") || 
        request.nextUrl.pathname.startsWith("/cadastro")) && 
       !isAuthenticated) {
-    // Redirect to login page if not authenticated
-    const loginUrl = new URL("/api/auth/signin", request.url);
-    return NextResponse.redirect(loginUrl);
+    // Redirect to 401 page if not authenticated
+    const unauthorizedUrl = new URL("/401", request.url);
+    return NextResponse.redirect(unauthorizedUrl);
   }
 
   return NextResponse.next();
