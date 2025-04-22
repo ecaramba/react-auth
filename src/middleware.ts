@@ -6,7 +6,9 @@ export async function middleware(request: NextRequest) {
   const isAuthenticated = !!token;
 
   // Check if the request is for a protected route
-  if (request.nextUrl.pathname.startsWith("/protected") && !isAuthenticated) {
+  if ((request.nextUrl.pathname.startsWith("/protected") || 
+       request.nextUrl.pathname.startsWith("/cadastro")) && 
+      !isAuthenticated) {
     // Redirect to login page if not authenticated
     const loginUrl = new URL("/api/auth/signin", request.url);
     return NextResponse.redirect(loginUrl);
@@ -16,5 +18,5 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/protected/:path*"],
+  matcher: ["/protected/:path*", "/cadastro/:path*", "/cadastro"],
 };

@@ -1,11 +1,12 @@
 import NextAuth from "next-auth";
-import AzureAD from "next-auth/providers/azure-ad";
+import type { NextAuthOptions } from "next-auth";
+import AzureADProvider from "next-auth/providers/azure-ad";
 import { JWT } from "next-auth/jwt";
 import { Session } from "next-auth";
 
-export const authOptions = {
+export const authOptions: NextAuthOptions = {
   providers: [
-    AzureAD({
+    AzureADProvider({
       clientId: process.env.AZURE_AD_CLIENT_ID as string,
       clientSecret: process.env.AZURE_AD_CLIENT_SECRET as string,
       tenantId: process.env.AZURE_AD_TENANT_ID as string,
@@ -33,15 +34,9 @@ export const authOptions = {
       return session;
     },
   },
-  pages: {
-    signIn: "/api/auth/signin",
-    signOut: "/api/auth/signout",
-    error: "/api/auth/error",
-  },
   session: {
     strategy: "jwt",
   },
 };
 
-const handler = NextAuth(authOptions);
-export { handler as GET, handler as POST };
+export default NextAuth(authOptions);

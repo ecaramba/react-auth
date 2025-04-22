@@ -1,5 +1,3 @@
-"use client";
-
 import { signIn, signOut, useSession } from "next-auth/react";
 import Link from "next/link";
 
@@ -17,9 +15,19 @@ export default function Navbar() {
           <Link href="/" className="hover:underline">
             Home
           </Link>
-          <Link href="/protected" className="hover:underline">
-            Protected
+          <Link href="/relatorio" className="hover:underline">
+            Relatório
           </Link>
+          {session && (
+            <>
+              <Link href="/cadastro" className="hover:underline">
+                Cadastro
+              </Link>
+              <Link href="/protected" className="hover:underline">
+                Protected
+              </Link>
+            </>
+          )}
           {!loading && !session && (
             <button
               onClick={() => signIn("azure-ad")}
